@@ -1,0 +1,8 @@
+[storage]
+# Maximum combined size of retained serialized outputs. Command metadata is
+# kept when an output is pruned.
+max_size = "1 GiB"
+
+# When true, Recall prunes the oldest outputs after each capture once max_size
+# is exceeded. When false, use `recall prune` manually.
+auto_prune = false
