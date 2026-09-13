@@ -55,7 +55,7 @@ def recall-load-config [] {
 
 def recall-restrict-file [path: path] {
     if $nu.os-info.family == "unix" {
-        try { ^chmod 600 $path } catch { null }
+        try { ^chmod 600 $path e>| ignore } catch { null }
     }
 }
 

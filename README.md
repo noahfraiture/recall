@@ -237,6 +237,10 @@ configuration and database files to mode `0600` and its data directory to
 `0700`. Anyone who can read the database can read its history; use
 `recall pause` or a space-prefixed command around sensitive work.
 
+With the Home Manager module, the generated TOML lives in the read-only Nix
+store and contains only retention settings. The history database remains in
+the user's writable data directory with private permissions.
+
 ## What gets captured
 
 Recall creates one entry for each submitted interactive REPL command and saves
