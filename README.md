@@ -53,6 +53,17 @@ The module installs Recall, generates its TOML configuration, imports it into
 Nushell, and installs its capture hooks. Change these Nix options and rebuild
 your Home Manager configuration to update the generated TOML file.
 
+After switching the configuration, start a new Nushell process. Existing
+shells keep the commands and hooks that were loaded from their previous
+`config.nu` and will not see Recall. If the terminal application itself stays
+running between system generations, fully quit and reopen it as well.
+
+Verify the installation in the new shell:
+
+```nu
+recall status
+```
+
 You can also build the package without enabling the module:
 
 ```sh
