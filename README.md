@@ -20,7 +20,49 @@ SQLite dependency.
 
 Recall is developed and tested against Nushell 0.113.1.
 
-## Install
+## Install with Nix and Home Manager
+
+Add Recall to the `inputs` in your flake:
+
+```nix
+inputs.recall = {
+  url = "github:noahfraiture/recall";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
+```
+
+Import its Home Manager module and enable it in your user configuration:
+
+```nix
+{ inputs, ... }:
+{
+  imports = [ inputs.recall.homeManagerModules.default ];
+
+  programs.nushell.enable = true;
+  programs.recall = {
+    enable = true;
+    settings.storage = {
+      maxSize = "1 GiB";
+      autoPrune = false;
+    };
+  };
+}
+```
+
+The module installs Recall, generates its TOML configuration, imports it into
+Nushell, and installs its capture hooks. Change these Nix options and rebuild
+your Home Manager configuration to update the generated TOML file.
+
+You can also build the package without enabling the module:
+
+```sh
+nix build github:noahfraiture/recall
+```
+
+The module is the recommended installation because a package on its own cannot
+modify Nushell's startup configuration.
+
+## Install manually
 
 Clone Recall into Nushell's scripts directory:
 
